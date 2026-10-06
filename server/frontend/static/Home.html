@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cars Dealership</title>
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<link rel="stylesheet" href="/static/style.css">
+<script>
+async function logout(){
+  await fetch("/djangoapp/logout");
+  sessionStorage.clear();
+  window.location.href="/";
+}
+function checkSession(){
+  const user=sessionStorage.getItem("username");
+  document.getElementById("loginlogout").innerHTML=user
+    ? '<span class="homepage_links">'+user+'</span><a class="homepage_links" href="#" onclick="logout();return false;">Logout</a>'
+    : '<a class="homepage_links" href="/login">Login</a><a class="homepage_links" href="/register">Register</a>';
+}
+</script>
+</head>
+<body onload="checkSession()">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise;">
+<div class="container-fluid"><h2 style="padding-right:5%;">Dealerships</h2>
+<ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="/about">About Us</a></li><li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li></ul>
+<div id="loginlogout" class="loginlink"></div></div></nav>
+<div class="container py-5"><div class="card mx-auto" style="max-width:700px;">
+<img src="/static/car_dealership.jpg" class="card-img-top" alt="Cars Dealership">
+<div class="banner"><h2>Welcome to our Dealerships!</h2><p>Explore dealers, vehicle models, and customer reviews.</p>
+<a href="/dealers" class="btn" style="background-color:aqua;margin:10px">View Dealerships</a></div></div></div>
+</body></html>
